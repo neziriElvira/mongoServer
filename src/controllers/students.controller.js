@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Student from '../models/student.model';
 
 const create = (req, res) => {
+    req.body._id = undefined;
     const student = Student(req.body);
     student.save((err, data) => {
         if (err) {

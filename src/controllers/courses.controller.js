@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Course from '../models/course.model';
 
 const create = (req, res) => {
+    req.body._id = undefined;
     const course = Course(req.body);
     course.save((err, data) => {
         if (err) {
@@ -20,6 +21,7 @@ const list = (req, res) => {
 }
 
 const read = (req, res) => {
+    const id = req.params.id;
     Course.findById(id).exec((err, data) => {
         if (err) {
             return res.status(400).json(err.message);
